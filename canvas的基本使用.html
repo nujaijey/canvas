@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="mycanvas" width="500" height="400">
+        <!-- 标签对儿里面的文字是用来提示低版本浏览器 -->
+        当前的浏览器版本不支持，请升级浏览器
+    </canvas>
+</body>
+<script>
+    // 得到canvas的画布
+    var canvas = document.getElementById("mycanvas");
+    // 得到画布的上下文，上下文有两个，2d的上下文和3d的上下文
+    // 所有的图像绘制都是通过ctx属性或者是方法进行设置的，和canvas标签没有关系了
+    var ctx = canvas.getContext("2d");
+    // 设置颜色
+    ctx.fillStyle = 'green';
+    // 绘制矩形
+    ctx.fillRect(100, 100, 200, 50);
+</script>
+
+</html>
