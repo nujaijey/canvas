@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        canvas {
+            display: block;
+            border: 1px solid black;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="mycanvas"></canvas>
+</body>
+<script>
+    //获取画布
+    var canvas = document.getElementById("mycanvas");
+    // 获取上下文 
+    var ctx = canvas.getContext("2d");
+    // 设置画布的宽高
+    canvas.width = document.documentElement.clientWidth - 30;
+    canvas.height = document.documentElement.clientHeight - 30;
+    // 获取随机颜色
+    function getRandomColor() {
+        var allType = "0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f";
+        var allTypeArr = allType.split(",");
+        var color = "#";
+        for (var i = 0; i < 6; i++) {
+            var random = parseInt(Math.random() * allTypeArr.length);
+            color += allTypeArr[random];
+        }
+        return color;
+    };
+    // 维护小球的数组
+    var ballArr = [];
+    // 球类
+    function Ball() {
+        // 设置小球的X和y
+        this.x = parseInt(Math.random() * canvas.width);
+        this.y = parseInt(Math.random() * canvas.height);
+        // 设置小球的半径
+        this.r = 20;
+        // 设置小球的颜色
+        this.color = getRandomColor();
+        // 设置小球的行进方向
+        this.dx = parseInt(Math.random() * 10) - 5;
+        this.dy = parseInt(Math.random() * 10) - 5;
+        ballArr.push(this);
+    };
+    // 创建小球
+    for (var i = 0; i < 20; i++) {
+        new Ball();
+    };
+    // 更新
+    Ball.prototype.update = function () {
+        this.x += this.dx;
+        this.y += this.dy;
+        if (this.x < this.r || this.x > canvas.width - this.r) this.dx = -this.dx;
+        if (this.y < this.r || this.y > canvas.height - this.r) this.dy = -this.dy;
+    };
+    // 渲染
+    Ball.prototype.render = function () {
+        // 创建一个路径
+        ctx.beginPath();
+        // 绘制小球
+        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2, false);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+    };
+    // 定时器进行动画渲染和更新
+    setInterval(function () {
+        // 清屏-更新-渲染
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (var i = 0; i < ballArr.length; i++) {
+            ballArr[i].update();
+            ballArr[i].render();
+        }
+    }, 10)
+</script>
+
+</html>
