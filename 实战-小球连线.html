@@ -50,13 +50,15 @@
         this.x = parseInt(Math.random() * canvas.width);
         this.y = parseInt(Math.random() * canvas.height);
         // 设置小球的半径
-        this.r = 20;
+        this.r = 15;
         // 设置小球的颜色
         this.color = getRandomColor();
         // 设置小球的行进方向
         this.dx = parseInt(Math.random() * 10) - 5;
         this.dy = parseInt(Math.random() * 10) - 5;
         ballArr.push(this);
+        // 找到自己在数组中的索引
+        this.index = ballArr.length - 1;
     };
     // 创建小球
     for (var i = 0; i < 20; i++) {
@@ -79,6 +81,20 @@
         ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2, false);
         ctx.fillStyle = this.color;
         ctx.fill();
+
+        // 画线的逻辑
+        // 只与比自己索引大的连线，避免双向连线
+        for (var i = this.index; i < ballArr.length; i++) {
+            if (Math.abs(ballArr[i].x - this.x) < 150 && Math.abs(ballArr[i].y - this.y) < 150) {
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y);
+                ctx.lineTo(ballArr[i].x, ballArr[i].y);
+                ctx.closePath();
+                ctx.strokeStyle = "#000";
+                ctx.globalAlpha = 10 / Math.sqrt(Math.pow(ballArr[i].x - this.x, 2) + Math.pow(ballArr[i].y - this.y, 2));
+                ctx.stroke();
+            }
+        }
     };
     // 定时器进行动画渲染和更新
     setInterval(function () {
