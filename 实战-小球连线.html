@@ -76,14 +76,14 @@
         // 创建一个路径
         ctx.beginPath();
         // 透明度
-        ctx.globalAlpha = 0.5;
+        ctx.globalAlpha = 0.8;
         // 绘制小球
         ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2, false);
         ctx.fillStyle = this.color;
         ctx.fill();
 
         // 画线的逻辑
-        // 只与比自己索引大的连线，避免双向连线
+        // i = this.index：只与比自己索引大的连线，避免双向连线
         for (var i = this.index; i < ballArr.length; i++) {
             if (Math.abs(ballArr[i].x - this.x) < 150 && Math.abs(ballArr[i].y - this.y) < 150) {
                 ctx.beginPath();
