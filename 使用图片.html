@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="500" height="500"></canvas>
+</body>
+
+<script>
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    // 第一步是创建一个image元素
+    var image = new Image();
+    // 用src设置图片的地址
+    image.src = "images/bg2.png";
+    // 必须要在onLoad之后再进行绘制图片，否则不会渲染
+    image.onload = function () {
+        // 如果我们设置的参数一共是2个（不包含第一个image参数），表示的 是图片的加载位置
+        // ctx.drawImage(image, 100, 100)
+        // 如果有4个参数，分别表示位置和宽高
+        // ctx.drawImage(image, 100, 100, 200, 120)
+        // 如果有8个参数，代表的是切片在图片上切下一块内容之后在画布中进行渲染
+        // 前4个参数指的是你在图片中设置切片的位置，以及切片的宽度和高度
+        // 后4个参数指的是切片在画布上的位置和切片宽度高度
+        ctx.drawImage(image, 408, 81, 147, 182, 200, 200, 147, 182)
+    }
+</script>
+
+</html>

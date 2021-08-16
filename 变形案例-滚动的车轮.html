@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="2000" height="800"></canvas>
+</body>
+
+<script>
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    // 第一步是创建一个image元素
+    var image = new Image();
+    // 用src设置图片的地址
+    image.src = "images/chelun.jpg";
+    // 必须要在onLoad之后再进行绘制图片，否则不会渲染
+    image.onload = function () {
+        // 旋转的度数
+        var deg = 0;
+        // 车轮的起始位置
+        var x = 658 / 2;
+        var y = 658 / 2;
+        // 定时器
+        setInterval(function () {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            deg += 0.05;
+            x++;
+            // 备份
+            ctx.save()
+            ctx.translate(x, y);
+            ctx.rotate(deg);
+            ctx.drawImage(image, -658 / 2, -658 / 2);
+            // 恢复
+            ctx.restore();
+        }, 10);
+    }
+</script>
+
+</html>

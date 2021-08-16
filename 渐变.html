@@ -15,12 +15,21 @@
 <script>
     var canvas = document.getElementById("canvas");
     var ctx = canvas.getContext("2d");
-    var linear = ctx.createRadialGradient(95, 25, 25, 102, 20, 40);
-    linear.addColorStop(0, "red");
-    linear.addColorStop(0.5, "yellow");
-    linear.addColorStop(0.8, "blue");
-    linear.addColorStop(1, "purple");
-    ctx.fillStyle = linear;
+    // 线性渐变
+    // var linear = ctx.createLinearGradient(0, 0, 200, 200);
+    // linear.addColorStop(0, "red");
+    // linear.addColorStop(0.3, "blue");
+    // linear.addColorStop(0.5, "yellow");
+    // linear.addColorStop(1, "purple");
+    // ctx.fillStyle = linear;
+    // ctx.fillRect(10, 10, 200, 100);
+    // 径向渐变
+    var radial = ctx.createRadialGradient(95, 25, 25, 102, 20, 40);
+    radial.addColorStop(0, "red");
+    radial.addColorStop(0.5, "yellow");
+    radial.addColorStop(0.8, "blue");
+    radial.addColorStop(1, "purple");
+    ctx.fillStyle = radial;
     ctx.fillRect(0, 0, 200, 100);
 </script>
 

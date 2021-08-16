@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="500" height="500"></canvas>
+</body>
+
+<script>
+    var deg = 0;
+    function draw() {
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        // 变形之前要先备份，将世界和平的状态进行备份，然后再变形，变形完毕后一定要恢复到世界和平的样子，不要影响下一次的操作
+        // translate移动
+        // 保存
+        // ctx.save();
+        // ctx.translate(50, 50);
+        // ctx.fillRect(0, 0, 120, 120);
+        // // 恢复
+        // ctx.restore();
+        // // 渲染位置是没有存档之前的位置
+        // ctx.fillRect(0, 220, 120, 120);
+        // rotate旋转
+        // deg += 0.1;
+        // // 保存
+        // ctx.save();
+        // ctx.translate(150, 150);
+        // ctx.rotate(deg)
+        // ctx.fillRect(0, 0, 120, 120);
+        // // 恢复
+        // ctx.restore();
+        // scale缩放
+        // 保存
+        // ctx.save();
+        // ctx.translate(150, 150);
+        // ctx.scale(1.5, 1.5);
+        // ctx.fillRect(0, 0, 120, 120);
+        // // 恢复
+        // ctx.restore();
+        // // 渲染位置是没有存档之前的位置
+        // ctx.fillRect(0, 220, 120, 120); 
+        // transform进行属性的translate、rotate、scale的综合写法
+        // transform(a, b, c, d, e, f)
+        // a(m11)水平方向的缩放
+        // b(m12)竖直方向的倾斜偏移
+        // c(m21)水平方向的倾斜偏移
+        // d(m22)竖直方向的缩放
+        // e(dx)水平方向的移动
+        // f(dy)竖直方向的移动
+        ctx.save();
+        ctx.transform(0.5, 1.1, 1.1, 0.5, 100, 100);
+        ctx.fillRect(0, 0, 120, 120);
+        // 恢复
+        ctx.restore();
+        // 渲染位置是没有存档之前的位置
+        ctx.fillRect(0, 220, 120, 120);
+    };
+    draw();
+</script>
+
+</html>
